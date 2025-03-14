@@ -15,3 +15,5 @@ const SongScreenLayout = () =>{
         </View>
     )
 }
+
+export default SongScreenLayout

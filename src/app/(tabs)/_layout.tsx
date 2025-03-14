@@ -1,44 +1,70 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-
+import { Platform, StyleSheet } from 'react-native';
+import { FontAwesome, MaterialCommunityIcons, Ionicons, FontAwesome6 } from '@expo/vector-icons';
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { fontSize } from '@/constants/Tokens';
+import { BlurView } from 'expo-blur';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors.primary,
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
+        tabBarBackground: Platform.select({
+          ios: () => (
+            <BlurView
+              intensity={95}
+              style={{
+                ...StyleSheet.absoluteFillObject,
+                overflow: 'hidden',
+              }}
+            />
+          )
+        }),
         tabBarStyle: Platform.select({
           ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
           },
-          default: {},
+          default: {
+            position: 'absolute',
+            borderTopWidth: 0,
+          },
         }),
+        tabBarLabelStyle : {
+          fontSize : fontSize.xs,
+          fontWeight: '500',
+        }
       }}>
       <Tabs.Screen
-        name="index"
+        name='favorites'
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
+          title: 'Favorites',
+          tabBarIcon : ({color}) => <FontAwesome name='heart' size={20} color={color}/>
+        }}/>
       <Tabs.Screen
-        name='artists'/>
+        name='playlists'
+        options={{
+          title: 'Playlists',
+          tabBarIcon : ({color}) => <MaterialCommunityIcons name='playlist-play' size={28} color={color}/>
+        }}/>
       <Tabs.Screen
-        name='favorites'/>
+        name='(songs)'
+        options={{
+          title: 'Songs',
+          tabBarIcon : ({color}) => <Ionicons name='musical-note-sharp' size={24} color={color}/>
+        }}/>
       <Tabs.Screen
-        name='playlists'/>
+        name='artists'
+        options={{
+          title: 'Aritsts',
+          tabBarIcon : ({color}) => <FontAwesome6 name='users-line' size={20} color={color}/>
+        }}/>
     </Tabs>
   );
 }
