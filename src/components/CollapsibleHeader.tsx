@@ -155,7 +155,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: Colors.background,
-    overflow: 'hidden',
     zIndex: 10,
     justifyContent: 'flex-end',
     paddingBottom: 12,
