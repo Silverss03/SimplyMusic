@@ -14,5 +14,11 @@ export const defaultStyles = StyleSheet.create({
     }
 })
 
-export const utilsStyles = StyleSheet.create({})
+export const utilsStyles = StyleSheet.create({
+    itemSeparator : {
+        borderColor : Colors.textMuted,
+        borderWidth : StyleSheet.hairlineWidth,
+        opacity : 0.3 
+    }
+})
 

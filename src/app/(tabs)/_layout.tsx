@@ -2,7 +2,6 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons, Ionicons, FontAwesome6 } from '@expo/vector-icons';
-import { HapticTab } from '@/components/HapticTab';
 import { Colors } from '@/constants/Colors';
 import { fontSize } from '@/constants/Tokens';
 import { BlurView } from 'expo-blur';
@@ -14,7 +13,6 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
         headerShown: false,
-        tabBarButton: HapticTab,
         tabBarBackground: Platform.select({
           ios: () => (
             <BlurView
@@ -56,8 +54,13 @@ export default function TabLayout() {
       <Tabs.Screen
         name='(songs)'
         options={{
-          title: 'Songs',
-          tabBarIcon : ({color}) => <Ionicons name='musical-note-sharp' size={24} color={color}/>
+          tabBarIcon : ({color}) => (
+            <Ionicons 
+              name='musical-note-sharp' 
+              size={24} 
+              color={color}/>
+          ),
+          title : "Songs"
         }}/>
       <Tabs.Screen
         name='artists'
