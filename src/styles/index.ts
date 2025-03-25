@@ -19,6 +19,12 @@ export const utilsStyles = StyleSheet.create({
         borderColor : Colors.textMuted,
         borderWidth : StyleSheet.hairlineWidth,
         opacity : 0.3 
+    },
+    emptyContentText: {
+        ...defaultStyles.text,
+        color: Colors.textMuted,
+        textAlign: 'center',
+        marginTop: 20
     }
 })
 

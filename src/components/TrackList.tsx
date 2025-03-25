@@ -1,5 +1,4 @@
-import { FlatList, FlatListProps, View } from "react-native"
-import library from "@/assets/data/library.json"
+import { FlatList, FlatListProps, View, Text } from "react-native"
 import TrackListItem from "./TrackListItem"
 import { utilsStyles } from "@/styles"
 import TrackPlayer, {Track} from "react-native-track-player"
@@ -25,6 +24,11 @@ const TrackList = ({tracks, ...flatlistProps} : TrackListProps) => {
             contentContainerStyle ={{paddingTop : 8, paddingBottom : 120}}
             ListFooterComponent={ItemDivider}
             ItemSeparatorComponent={ItemDivider}
+            ListEmptyComponent={
+                <View>
+                    <Text style ={utilsStyles.emptyContentText}>No songs found</Text>
+                </View>
+            }
             renderItem={({item : track}) => <TrackListItem track={{...track}} onTrackSelect={handleTrackSelect}/>}
             {...flatlistProps}
         />
